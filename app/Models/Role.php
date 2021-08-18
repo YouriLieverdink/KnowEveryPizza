@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Role extends Model
 {
     use HasFactory;
 
@@ -15,16 +15,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email',
+        'title',
     ];
 
     /**
-     * Relation to the Role model.
+     * Relation to the User model.
      * 
-     * @return App\Models\Role
+     * @return App\Models\User
      */
-    public function roles()
+    public function users()
     {
-        return $this->hasMany(Role::class);
+        return $this->belongsToMany(User::class);
     }
 }
