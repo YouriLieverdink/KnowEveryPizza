@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,21 +27,21 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('register', [AuthenticationController::class, 'register']);
 
         /* Request code via email and login */
-        Route::post('request', [AuthenticationController::class, 'request']);
+        Route::post('request-login', [AuthenticationController::class, 'requestLogin']);
         Route::post('login', [AuthenticationController::class, 'login']);
     });
 
     /* Routes protected by the 'database' role. */
     Route::group(['middleware' => 'role:database'], function () {
 
-        Route::apiResource('ingredients', [IngredientController::class]);
-        Route::apiResource('products', [ProductController::class]);
-        Route::apiResource('categories', [CategoryController::class]);
+        Route::apiResource('ingredients', IngredientController::class);
+        Route::apiResource('products', ProductController::class);
+        Route::apiResource('categories', CategoryController::class);
     });
 
     /* Routes protected by the 'admin' role. */
     Route::group(['middleware' => 'role:admin'], function () {
 
-        Route::apiResource('invitations', [InvitationController::class]);
+        Route::apiResource('invitations', InvitationController::class);
     });
 });
