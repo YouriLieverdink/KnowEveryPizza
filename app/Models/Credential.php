@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Traits\Children;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class InvitationCode extends Code
+class Credential extends Code
 {
     use HasFactory, Children;
 }

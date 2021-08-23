@@ -16,4 +16,15 @@ class Code extends Model
      * @var string
      */
     protected $table = 'codes';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'email',
+        'code',
+        'expires_at',
+    ];
 }
