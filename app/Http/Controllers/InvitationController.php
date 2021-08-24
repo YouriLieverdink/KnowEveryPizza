@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CodeMail;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
-use App\Mail\InvitationMail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\CodeResource;
 use Illuminate\Support\Facades\Response;
@@ -47,10 +47,6 @@ class InvitationController extends Controller
 
         // Create a new invitation.
         $invitation = Invitation::create($validated);
-
-        // Sent an invitation email to the user.
-        $mailable = new InvitationMail($invitation);
-        Mail::to($invitation->email)->queue($mailable);
 
         return Response::json([
             'message' => 'The invitation has been stored.',

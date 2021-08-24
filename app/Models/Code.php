@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Traits\Parents;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Events\CodeCreatedEvent;
+use App\Events\CodeCreatingEvent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Code extends Model
 {
@@ -26,5 +28,17 @@ class Code extends Model
         'email',
         'code',
         'expires_at',
+    ];
+
+    /**
+     * The event map for the model.
+     *
+     * Allows for object-based events for native Eloquent events.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'creating' => CodeCreatingEvent::class,
+        'created' => CodeCreatedEvent::class,
     ];
 }

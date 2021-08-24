@@ -7,20 +7,31 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
-class Role
+class EnsureUserHasRole
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, string $role)
+    public function handle(Request $request, Closure $next, string $roleName)
     {
-        // Check whether the user has the provided role.
-        if (!Auth::user()->hasRole($role)) {
+        $user = Auth::user();
+
+        // Check whether the user has the role.
+        $hasRole = false;
+
+        foreach ($user->roles()->get() as $role) {
+            // Check whether this user has the provided role.
+            if ($role->title == $roleName) {
+
+                $hasRole = true;
+            }
+        }
+
+        if (!$hasRole) {
 
             return Response::json([
                 'message' => 'You are unauthorized to make this request.',
@@ -28,6 +39,7 @@ class Role
             ], 403);
         }
 
+        // The user is authorized to continue.
         return $next($request);
     }
 }

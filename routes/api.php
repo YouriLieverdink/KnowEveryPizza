@@ -32,20 +32,20 @@ Route::group(['prefix' => 'v1'], function () {
     });
 
     /* Routes protected by authentication */
-    // Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::group(['middleware' => 'auth:sanctum'], function () {
 
-    /* Routes protected by the 'database' role. */
-    // Route::group(['middleware' => 'role:database'], function () {
+        /* Routes protected by the 'database' role. */
+        Route::group(['middleware' => 'role:database'], function () {
 
-    Route::apiResource('ingredients', IngredientController::class);
-    Route::apiResource('products', ProductController::class);
-    Route::apiResource('categories', CategoryController::class);
-    // });
+            Route::apiResource('ingredients', IngredientController::class);
+            Route::apiResource('products', ProductController::class);
+            Route::apiResource('categories', CategoryController::class);
+        });
 
-    /* Routes protected by the 'admin' role. */
-    // Route::group(['middleware' => 'role:admin'], function () {
+        /* Routes protected by the 'admin' role. */
+        Route::group(['middleware' => 'role:admin'], function () {
 
-    Route::apiResource('invitations', InvitationController::class);
-    // });
-    // });
+            Route::apiResource('invitations', InvitationController::class);
+        });
+    });
 });
