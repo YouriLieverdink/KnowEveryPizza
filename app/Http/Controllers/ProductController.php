@@ -37,7 +37,10 @@ class ProductController extends Controller
 
         // Create the product and sync the ingredients.
         $product = Product::create($validated);
-        $product->ingredients()->sync($validated['ingredients']);
+
+        if (key_exists('ingredients', $validated)) {
+            $product->ingredients()->sync($validated['ingredients']);
+        }
 
         return Response::json([
             'message' => 'The product has been stored.',
@@ -94,7 +97,10 @@ class ProductController extends Controller
 
         // Update the product and sync the ingredients.
         $product->update($validated);
-        $product->ingredients()->sync($validated['ingredients']);
+
+        if (key_exists('ingredients', $validated)) {
+            $product->ingredients()->sync($validated['ingredients']);
+        }
 
         return Response::json([
             'message' => 'The product has been updated.',

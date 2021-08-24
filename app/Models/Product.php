@@ -19,6 +19,16 @@ class Product extends Model
     ];
 
     /**
+     * Relation to the Category model.
+     * 
+     * @return App\Models\Category
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class)->withTimestamps();
+    }
+
+    /**
      * Relation to the Ingredient model.
      * 
      * @return App\Models\Ingredient

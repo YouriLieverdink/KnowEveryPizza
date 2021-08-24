@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\Category;
 
 use App\Http\Requests\BaseFormRequest;
 
-class UpdateProductRequest extends BaseFormRequest
+class UpdateCategoryRequest extends BaseFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,16 +14,16 @@ class UpdateProductRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            // The title of the product.
+            // The title of the category.
             'title' => [
                 'string',
             ],
-            // The identifiers of the ingreidents on the product.
-            'ingredients' => [
+            // The identifiers of the products in the category.
+            'products' => [
                 'array',
             ],
-            'ingredients.*' => [
-                'exists:ingredients,id',
+            'products.*' => [
+                'exists:products,id',
                 'integer',
             ],
         ];

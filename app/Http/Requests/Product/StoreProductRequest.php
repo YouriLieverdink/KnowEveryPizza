@@ -23,10 +23,10 @@ class StoreProductRequest extends BaseFormRequest
             'ingredients' => [
                 'array',
                 'required',
-                'min:1',
             ],
             'ingredients.*' => [
                 'exists:ingredients,id',
+                'integer',
             ],
         ];
     }
