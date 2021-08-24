@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Traits\Parents;
-use App\Events\CodeCreatedEvent;
-use App\Events\CodeCreatingEvent;
+use App\Events\Code\CodeCreatedEvent;
+use App\Events\Code\CodeCreatingEvent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

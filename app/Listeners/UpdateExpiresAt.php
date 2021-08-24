@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use Carbon\Carbon;
 use App\Models\Credential;
-use App\Events\CodeCreatingEvent;
+use App\Events\Code\CodeCreatingEvent;
 
 class UpdateExpiresAt
 {

@@ -2,10 +2,10 @@
 
 namespace App\Listeners;
 
-use App\Events\CodeCreatedEvent;
 use App\Mail\CodeMail;
 use App\Models\Credential;
 use Illuminate\Support\Facades\Mail;
+use App\Events\Code\CodeCreatedEvent;
 
 class SendCodeMail
 {

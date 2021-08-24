@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Events;
+namespace App\Events\Code;
 
 use App\Models\Code;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 
-class CodeCreatedEvent
+class CodeCreatingEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use App\Events\CodeCreatingEvent;
+use App\Events\Code\CodeCreatingEvent;
 
 class UpdateCode
 {
