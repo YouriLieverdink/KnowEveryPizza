@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Ingredient;
 
-class StoreIngredientRequest extends BaseFormRequest
+use App\Http\Requests\BaseFormRequest;
+
+class UpdateIngredientRequest extends BaseFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,12 +17,10 @@ class StoreIngredientRequest extends BaseFormRequest
             // The title of the ingredient.
             'title' => [
                 'string',
-                'required',
             ],
             // The unit in which the ingredient is measured.
             'unit' => [
                 'string',
-                'required',
                 'in:gram,millilitre,slice',
             ],
         ];

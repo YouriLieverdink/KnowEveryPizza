@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\CodeMail;
 use App\Models\Invitation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\CodeResource;
 use Illuminate\Support\Facades\Response;
-use App\Http\Requests\StoreInvitationRequest;
+use App\Http\Requests\Invitation\StoreInvitationRequest;
 
 class InvitationController extends Controller
 {

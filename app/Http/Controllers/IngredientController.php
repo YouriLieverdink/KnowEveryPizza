@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ingredient;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Http\Resources\IngredientResource;
-use App\Http\Requests\StoreIngredientRequest;
-use App\Http\Requests\UpdateIngredientRequest;
+use App\Http\Requests\Ingredient\StoreIngredientRequest;
+use App\Http\Requests\Ingredient\UpdateIngredientRequest;
 
 class IngredientController extends Controller
 {

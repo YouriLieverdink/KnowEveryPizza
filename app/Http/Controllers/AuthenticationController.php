@@ -6,10 +6,10 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Invitation;
 use App\Models\Credential;
-use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Response;
-use App\Http\Requests\RequestLoginRequest;
+use App\Http\Requests\Authentication\LoginRequest;
+use App\Http\Requests\Authentication\RegisterRequest;
+use App\Http\Requests\Authentication\RequestLoginRequest;
 
 class AuthenticationController extends Controller
 {

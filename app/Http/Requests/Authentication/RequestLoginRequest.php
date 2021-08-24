@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Authentication;
 
-class StoreInvitationRequest extends BaseFormRequest
+use App\Http\Requests\BaseFormRequest;
+
+class RequestLoginRequest extends BaseFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -12,7 +14,7 @@ class StoreInvitationRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            // The email address of the user who has to be invited.
+            // The email address associated with the account.
             'email' => [
                 'required',
                 'string',
