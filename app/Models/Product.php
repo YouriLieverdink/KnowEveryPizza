@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ingredient extends Model
+class Product extends Model
 {
     use HasFactory;
 
@@ -16,16 +16,15 @@ class Ingredient extends Model
      */
     protected $fillable = [
         'title',
-        'unit',
     ];
 
     /**
-     * Relation to the Product model.
+     * Relation to the Ingredient model.
      * 
-     * @return App\Model\Product
+     * @return App\Models\Ingredient
      */
-    public function products()
+    public function ingredients()
     {
-        return $this->belongsToMany(Product::class)->withTimestamps();
+        return $this->belongsToMany(Ingredient::class)->withTimestamps();
     }
 }
