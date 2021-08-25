@@ -42,6 +42,13 @@ class ProductController extends Controller
             $product->ingredients()->sync($validated['ingredients']);
         }
 
+        if (key_exists('photo', $validated)) {
+            // Store the photo and add it to the product.
+            $path = $request->file('photo')->store('products');
+
+            $product->photo = $path;
+        }
+
         return Response::json([
             'message' => 'The product has been stored.',
             'data' => new ProductResource($product),
@@ -100,6 +107,13 @@ class ProductController extends Controller
 
         if (key_exists('ingredients', $validated)) {
             $product->ingredients()->sync($validated['ingredients']);
+        }
+
+        if (key_exists('photo', $validated)) {
+            // Store the photo and add it to the product.
+            $path = $request->file('photo')->store('products');
+
+            $product->photo = $path;
         }
 
         return Response::json([

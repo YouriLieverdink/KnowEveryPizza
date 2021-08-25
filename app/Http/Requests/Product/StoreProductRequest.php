@@ -19,6 +19,12 @@ class StoreProductRequest extends BaseFormRequest
                 'string',
                 'required',
             ],
+            // The photo of the product.
+            'photo' => [
+                'file',
+                'required',
+                'mimes:jpg,bmp,png',
+            ],
             // The identifiers of the ingreidents on the product.
             'ingredients' => [
                 'array',
