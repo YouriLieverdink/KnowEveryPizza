@@ -4,7 +4,7 @@ namespace App\Http\Requests\Match;
 
 use App\Http\Requests\BaseFormRequest;
 
-class NewRequest extends BaseFormRequest
+class MatchRequest extends BaseFormRequest
 {
     /**
      * Get the validation rules that apply to the request.

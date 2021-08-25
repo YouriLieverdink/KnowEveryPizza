@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\Requests\Match\NewRequest;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Response;
+use App\Http\Requests\Match\MatchRequest;
 
 class MatchController extends Controller
 {
     /**
-     * Returns a new random product.
-     * 
-     * @param App\Http\Requests\Match\NewRequest $request
-     * @return Illuminate\Support\Facades\Response
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function new(NewRequest $request)
+    public function __invoke(MatchRequest $request)
     {
         $validated = $request->validated();
 
