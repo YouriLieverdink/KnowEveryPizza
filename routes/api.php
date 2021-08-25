@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\MatchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,12 @@ Route::group(['prefix' => 'v1'], function () {
         Route::group(['middleware' => 'role:admin'], function () {
 
             Route::apiResource('invitations', InvitationController::class);
+        });
+
+        /* Routes used for the match */
+        Route::group(['prefix' => 'match'], function () {
+
+            Route::post('new', [MatchController::class, 'new']);
         });
     });
 });
