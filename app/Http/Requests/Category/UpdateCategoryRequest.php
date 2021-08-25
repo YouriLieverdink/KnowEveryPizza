@@ -17,14 +17,19 @@ class UpdateCategoryRequest extends BaseFormRequest
             // The title of the category.
             'title' => [
                 'string',
+                'unique:categories',
+            ],
+            // The photo of the category.
+            'photo' => [
+                'image',
             ],
             // The identifiers of the products in the category.
             'products' => [
                 'array',
             ],
             'products.*' => [
-                'exists:products,id',
                 'integer',
+                'exists:products,id',
             ],
         ];
     }

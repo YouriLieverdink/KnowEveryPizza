@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Http\Resources\ProductResource;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
@@ -17,6 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        // Retrieve all the products.
         $products = Product::all();
 
         return Response::json([
@@ -35,18 +37,22 @@ class ProductController extends Controller
     {
         $validated = $request->validated();
 
-        // Create the product and sync the ingredients.
-        $product = Product::create($validated);
+        // Check whether a photo has been provided.
+        if (key_exists('photo', $validated)) {
 
-        if (key_exists('ingredients', $validated)) {
-            $product->ingredients()->sync($validated['ingredients']);
+            // Store the file and update it's path.
+            $path = Storage::putFile('products', $request->file('photo'));
+
+            $validated['photo'] = $path;
         }
 
-        if (key_exists('photo', $validated)) {
-            // Store the photo and add it to the product.
-            $path = $request->file('photo')->store('products');
+        // Create the product.
+        $product = Product::create($validated);
 
-            $product->photo = $path;
+        // Sync the ingredients.
+        if (key_exists('ingredients', $validated)) {
+
+            $product->ingredients()->sync($validated['ingredients']);
         }
 
         return Response::json([
@@ -102,18 +108,22 @@ class ProductController extends Controller
 
         $validated = $request->validated();
 
-        // Update the product and sync the ingredients.
-        $product->update($validated);
+        // Check whether a photo has been provided.
+        if (key_exists('photo', $validated)) {
 
-        if (key_exists('ingredients', $validated)) {
-            $product->ingredients()->sync($validated['ingredients']);
+            // Store the file and update it's path.
+            $path = Storage::putFile('products', $request->file('photo'));
+
+            $validated['photo'] = $path;
         }
 
-        if (key_exists('photo', $validated)) {
-            // Store the photo and add it to the product.
-            $path = $request->file('photo')->store('products');
+        // Update the product.
+        $product->update($validated);
 
-            $product->photo = $path;
+        // Sync the ingredients.
+        if (key_exists('ingredients', $validated)) {
+
+            $product->ingredients()->sync($validated['ingredients']);
         }
 
         return Response::json([

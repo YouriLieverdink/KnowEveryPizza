@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\CategoryResource;
+use Illuminate\Support\Facades\Response;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
-use App\Http\Resources\CategoryResource;
-use App\Models\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 
 class CategoryController extends Controller
 {
@@ -36,10 +36,21 @@ class CategoryController extends Controller
     {
         $validated = $request->validated();
 
-        // Create the category and sync the products.
+        // Check whether a photo has been provided.
+        if (key_exists('photo', $validated)) {
+
+            // Store the file and update it's path.
+            $path = Storage::putFile('categories', $request->file('photo'));
+
+            $validated['photo'] = $path;
+        }
+
+        // Create the category.
         $category = Category::create($validated);
 
-        if (key_exists('products', $validated) && !empty($validated['products'])) {
+        // Sync the products.
+        if (key_exists('products', $validated)) {
+
             $category->products()->sync($validated['products']);
         }
 
@@ -96,10 +107,21 @@ class CategoryController extends Controller
 
         $validated = $request->validated();
 
-        // Update the category and sync the products.
+        // Check whether a photo has been provided.
+        if (key_exists('photo', $validated)) {
+
+            // Store the file and update it's path.
+            $path = Storage::putFile('categories', $request->file('photo'));
+
+            $validated['photo'] = $path;
+        }
+
+        // Update the category.
         $category->update($validated);
 
+        // Sync the products.
         if (key_exists('products', $validated)) {
+
             $category->products()->sync($validated['products']);
         }
 
@@ -127,6 +149,9 @@ class CategoryController extends Controller
                 'data' => null,
             ], 404);
         }
+
+        // Delete the photo and the category.
+        Storage::delete($category->path);
 
         $category->delete();
 

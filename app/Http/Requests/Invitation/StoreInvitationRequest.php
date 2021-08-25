@@ -16,8 +16,8 @@ class StoreInvitationRequest extends BaseFormRequest
         return [
             // The email address of the user who has to be invited.
             'email' => [
-                'required',
                 'string',
+                'required',
             ],
         ];
     }

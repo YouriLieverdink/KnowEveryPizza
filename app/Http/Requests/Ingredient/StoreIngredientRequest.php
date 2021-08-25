@@ -17,13 +17,14 @@ class StoreIngredientRequest extends BaseFormRequest
             // The title of the ingredient.
             'title' => [
                 'string',
+                'unique:ingredients',
                 'required',
             ],
             // The unit in which the ingredient is measured.
             'unit' => [
                 'string',
-                'required',
                 'in:gram,millilitre,slice',
+                'required',
             ],
         ];
     }

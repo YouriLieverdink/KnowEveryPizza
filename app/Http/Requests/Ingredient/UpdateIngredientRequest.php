@@ -17,6 +17,7 @@ class UpdateIngredientRequest extends BaseFormRequest
             // The title of the ingredient.
             'title' => [
                 'string',
+                'unique:ingredients',
             ],
             // The unit in which the ingredient is measured.
             'unit' => [

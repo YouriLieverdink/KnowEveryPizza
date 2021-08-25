@@ -17,22 +17,20 @@ class StoreProductRequest extends BaseFormRequest
             // The title of the product.
             'title' => [
                 'string',
+                'unique:products',
                 'required',
             ],
             // The photo of the product.
             'photo' => [
-                'file',
-                'required',
-                'mimes:jpg,bmp,png',
+                'image',
             ],
-            // The identifiers of the ingreidents on the product.
+            // The identifiers of the ingredients on the product.
             'ingredients' => [
                 'array',
-                'required',
             ],
             'ingredients.*' => [
-                'exists:ingredients,id',
                 'integer',
+                'exists:ingredients,id',
             ],
         ];
     }

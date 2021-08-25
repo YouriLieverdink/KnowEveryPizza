@@ -16,8 +16,8 @@ class RequestLoginRequest extends BaseFormRequest
         return [
             // The email address associated with the account.
             'email' => [
-                'required',
                 'string',
+                'required',
             ],
         ];
     }

@@ -16,13 +16,13 @@ class LoginRequest extends BaseFormRequest
         return [
             // The email address associated with the account.
             'email' => [
-                'required',
                 'string',
+                'required',
             ],
             // The credential code received via email.
             'code' => [
-                'required',
                 'string',
+                'required',
             ],
         ];
     }

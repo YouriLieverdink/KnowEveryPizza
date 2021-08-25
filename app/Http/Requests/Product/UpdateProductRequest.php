@@ -17,19 +17,18 @@ class UpdateProductRequest extends BaseFormRequest
             // The title of the product.
             'title' => [
                 'string',
+                'unique:products',
             ],
             // The photo of the product.
             'photo' => [
-                'file',
-                'mimes:jpg,bmp,png',
+                'image',
             ],
             // The identifiers of the ingreidents on the product.
             'ingredients' => [
                 'array',
             ],
             'ingredients.*' => [
-                'exists:ingredients,id',
-                'integer',
+                'exists:ingredients,id', 'integer',
             ],
         ];
     }

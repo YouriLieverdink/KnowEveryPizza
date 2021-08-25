@@ -16,13 +16,13 @@ class RegisterRequest extends BaseFormRequest
         return [
             // The email address the user would like to use.
             'email' => [
-                'required',
                 'string',
+                'required',
             ],
             // The invitation code received via email.
             'code' => [
-                'required',
                 'string',
+                'required',
             ],
         ];
     }

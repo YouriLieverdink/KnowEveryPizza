@@ -17,16 +17,20 @@ class StoreCategoryRequest extends BaseFormRequest
             // The title of the category.
             'title' => [
                 'string',
+                'unique:categories',
                 'required',
+            ],
+            //The photo of the category.
+            'photo' => [
+                'image',
             ],
             // The identifiers of the products in the category.
             'products' => [
                 'array',
-                'present',
             ],
             'products.*' => [
-                'exists:products,id',
                 'integer',
+                'exists:products,id',
             ],
         ];
     }
