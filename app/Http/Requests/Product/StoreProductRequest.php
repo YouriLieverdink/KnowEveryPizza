@@ -24,13 +24,31 @@ class StoreProductRequest extends BaseFormRequest
             'photo' => [
                 'image',
             ],
-            // The identifiers of the ingredients on the product.
+            // The identifiers and amounts of the ingredients on the product.
             'ingredients' => [
                 'array',
             ],
-            'ingredients.*' => [
+            'ingredients.*.id' => [
                 'integer',
                 'exists:ingredients,id',
+                'required',
+            ],
+            'ingredients.*.medium' => [
+                'numeric',
+                'min:0',
+                'required',
+            ],
+            'ingredients.*.italian' => [
+                'numeric',
+                'min:0',
+            ],
+            'ingredients.*.large' => [
+                'numeric',
+                'min:0',
+            ],
+            'ingredients.*.family' => [
+                'numeric',
+                'min:0',
             ],
         ];
     }

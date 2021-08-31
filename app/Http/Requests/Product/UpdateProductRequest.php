@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Product;
 
+use Illuminate\Validation\Rule;
 use App\Http\Requests\BaseFormRequest;
 
 class UpdateProductRequest extends BaseFormRequest
@@ -17,18 +18,37 @@ class UpdateProductRequest extends BaseFormRequest
             // The title of the product.
             'title' => [
                 'string',
-                'unique:products',
+                Rule::unique('products')->ignore($this->route('product')),
             ],
             // The photo of the product.
             'photo' => [
                 'image',
             ],
-            // The identifiers of the ingreidents on the product.
+            // The identifiers and amounts of the ingreidents on the product.
             'ingredients' => [
                 'array',
             ],
-            'ingredients.*' => [
-                'exists:ingredients,id', 'integer',
+            'ingredients.*.id' => [
+                'integer',
+                'exists:ingredients,id',
+                'required',
+            ],
+            'ingredients.*.medium' => [
+                'numeric',
+                'min:0',
+                'required',
+            ],
+            'ingredients.*.italian' => [
+                'numeric',
+                'min:0',
+            ],
+            'ingredients.*.large' => [
+                'numeric',
+                'min:0',
+            ],
+            'ingredients.*.family' => [
+                'numeric',
+                'min:0',
             ],
         ];
     }

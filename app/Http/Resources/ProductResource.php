@@ -14,10 +14,17 @@ class ProductResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $data = [
             'id' => $this->id,
             'title' => $this->title,
-            'ingredients' => IngredientResource::collection($this->ingredients),
+            'ingredients' => [],
         ];
+
+        foreach ($this->ingredients as $ingredient) {
+
+            array_push($data['ingredients'], new IngredientResource($ingredient),);
+        }
+
+        return $data;
     }
 }

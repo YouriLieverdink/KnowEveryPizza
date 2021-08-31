@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ingredient extends Model
 {
@@ -26,6 +26,10 @@ class Ingredient extends Model
      */
     public function products()
     {
-        return $this->belongsToMany(Product::class)->withTimestamps();
+        return $this
+            ->belongsToMany(Product::class)
+            ->withTimestamps()
+            ->withPivot('medium', 'italian', 'large', 'family')
+            ->as('amounts');
     }
 }

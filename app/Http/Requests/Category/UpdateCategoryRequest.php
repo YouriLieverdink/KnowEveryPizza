@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Category;
 
+use Illuminate\Validation\Rule;
 use App\Http\Requests\BaseFormRequest;
 
 class UpdateCategoryRequest extends BaseFormRequest
@@ -17,7 +18,7 @@ class UpdateCategoryRequest extends BaseFormRequest
             // The title of the category.
             'title' => [
                 'string',
-                'unique:categories',
+                Rule::unique('categories')->ignore($this->route('category')),
             ],
             // The photo of the category.
             'photo' => [

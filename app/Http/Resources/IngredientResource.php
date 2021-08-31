@@ -14,10 +14,18 @@ class IngredientResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $data = [
             'id' => $this->id,
             'title' => $this->title,
             'unit' => $this->unit,
         ];
+
+        /* Add the amounts of the sizes */
+        if ($this->amounts !== null) {
+
+            $data['amounts'] = $this->amounts->only('medium', 'italian', 'large', 'family');
+        }
+
+        return $data;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Ingredient;
 
+use Illuminate\Validation\Rule;
 use App\Http\Requests\BaseFormRequest;
 
 class UpdateIngredientRequest extends BaseFormRequest
@@ -17,7 +18,7 @@ class UpdateIngredientRequest extends BaseFormRequest
             // The title of the ingredient.
             'title' => [
                 'string',
-                'unique:ingredients',
+                Rule::unique('ingredients')->ignore($this->route('ingredient')),
             ],
             // The unit in which the ingredient is measured.
             'unit' => [

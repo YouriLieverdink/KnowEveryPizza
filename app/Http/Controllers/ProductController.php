@@ -52,7 +52,7 @@ class ProductController extends Controller
         // Sync the ingredients.
         if (key_exists('ingredients', $validated)) {
 
-            $product->ingredients()->sync($validated['ingredients']);
+            $product->syncIngredients($validated['ingredients']);
         }
 
         return Response::json([
@@ -123,7 +123,7 @@ class ProductController extends Controller
         // Sync the ingredients.
         if (key_exists('ingredients', $validated)) {
 
-            $product->ingredients()->sync($validated['ingredients']);
+            $product->syncIngredients($validated['ingredients']);
         }
 
         return Response::json([
