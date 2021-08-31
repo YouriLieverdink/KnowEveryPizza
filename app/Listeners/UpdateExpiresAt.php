@@ -21,7 +21,7 @@ class UpdateExpiresAt
         // Check whether the type of the code is credential.
         if ($event->code instanceof Credential) {
 
-            $now->addSecond(15);
+            $now->addMinutes(15);
         } //
         else {
 
